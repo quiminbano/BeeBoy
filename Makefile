@@ -1,6 +1,6 @@
 NAME = BeeBoy
 
-SRC = $(addprefix src/, main.cpp)
+SRC = $(addprefix src/, main.cpp Cpu_registers.cpp)
 
 OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
 
@@ -8,7 +8,7 @@ INCLUDES = -Iinclude
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -Wpedantic
+CFLAGS = -Wall -Wextra -Werror -Wpedantic -std=c++17
 
 all: $(NAME)
 
