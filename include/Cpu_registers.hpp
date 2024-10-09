@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:00:31 by corellan          #+#    #+#             */
-/*   Updated: 2024/10/09 19:34:45 by corellan         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:37:29 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ public:
 	Cpu_registers	&operator=(const Cpu_registers &other);
 	Cpu_registers	&operator=(Cpu_registers &&other) noexcept;
 
-	bool		isCarry() const;
-	bool		isHalfCarry() const;
-	bool		isSubtract() const;
-	bool		isZero() const;
+	bool		isCarryFlag() const;
+	bool		isHalfCarryFlag() const;
+	bool		isSubtractFlag() const;
+	bool		isZeroFlag() const;
 	u_int16_t	getBC() const;
 	u_int16_t	getDE() const;
 	u_int16_t	getHL() const;
@@ -65,14 +65,14 @@ public:
 	void		setDE(u_int16_t value);
 	void		setHL(u_int16_t value);
 	void		setAF(u_int16_t value);
-	void		setCarry();
-	void		setHalfCarry();
-	void		setSubtract();
-	void		setZero();
-	void		unsetCarry();
-	void		unsetHalfCarry();
-	void		unsetSubtract();
-	void		unsetZero();
+	void		setCarryFlag();
+	void		setHalfCarryFlag();
+	void		setSubtractFlag();
+	void		setZeroFlag();
+	void		unsetCarryFlag();
+	void		unsetHalfCarryFlag();
+	void		unsetSubtractFlag();
+	void		unsetZeroFlag();
 };
 
 #endif

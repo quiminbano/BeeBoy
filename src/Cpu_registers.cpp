@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:35:16 by corellan          #+#    #+#             */
-/*   Updated: 2024/10/09 19:34:26 by corellan         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:38:38 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,22 @@ Cpu_registers	&Cpu_registers::operator=(Cpu_registers &&other)
 	return (*this);
 }
 
-bool	Cpu_registers::isCarry() const
+bool	Cpu_registers::isCarryFlag() const
 {
 	return (((F >> 4) & 1) != 0);
 }
 
-bool	Cpu_registers::isHalfCarry() const
+bool	Cpu_registers::isHalfCarryFlag() const
 {
 	return (((F >> 5) & 1) != 0);
 }
 
-bool	Cpu_registers::isSubtract() const
+bool	Cpu_registers::isSubtractFlag() const
 {
 	return (((F >> 6) & 1) != 0);
 }
 
-bool	Cpu_registers::isZero() const
+bool	Cpu_registers::isZeroFlag() const
 {
 	return (((F >> 7) & 1) != 0);
 }
@@ -243,42 +243,42 @@ void	Cpu_registers::setAF(u_int16_t value)
 	L = static_cast<u_int8_t>((value & 0xFF));
 }
 
-void	Cpu_registers::setCarry()
+void	Cpu_registers::setCarryFlag()
 {
 	F = (F | 0b00010000);
 }
 
-void	Cpu_registers::setHalfCarry()
+void	Cpu_registers::setHalfCarryFlag()
 {
 	F = (F | 0b00100000);
 }
 
-void	Cpu_registers::setSubtract()
+void	Cpu_registers::setSubtractFlag()
 {
 	F = (F | 0b01000000);
 }
 
-void	Cpu_registers::setZero()
+void	Cpu_registers::setZeroFlag()
 {
 	F = (F | 0b10000000);
 }
 
-void	Cpu_registers::unsetCarry()
+void	Cpu_registers::unsetCarryFlag()
 {
 	F = ~((~F | 0b00010000));
 }
 
-void	Cpu_registers::unsetHalfCarry()
+void	Cpu_registers::unsetHalfCarryFlag()
 {
 	F = ~((~F | 0b00100000));
 }
 
-void	Cpu_registers::unsetSubtract()
+void	Cpu_registers::unsetSubtractFlag()
 {
 	F = ~((~F | 0b01000000));
 }
 
-void	Cpu_registers::unsetZero()
+void	Cpu_registers::unsetZeroFlag()
 {
 	F = ~((~F | 0b10000000));
 }
