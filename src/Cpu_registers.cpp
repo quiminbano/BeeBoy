@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:35:16 by corellan          #+#    #+#             */
-/*   Updated: 2024/10/09 15:28:01 by corellan         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:34:26 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,32 @@ Cpu_registers::Cpu_registers()
 
 Cpu_registers::Cpu_registers(const Cpu_registers &other)
 {
-
+	A = other.A;
+	B = other.B;
+	C = other.C;
+	D = other.D;
+	E = other.E;
+	F = other.F;
+	H = other.H;
+	L = other.L;
+	SP = other.SP;
+	CP = other.CP;
 }
 
-Cpu_registers::Cpu_registers(const Cpu_registers &&other)
+Cpu_registers::Cpu_registers(Cpu_registers &&other) noexcept
 {
-
+	A = other.A;
+	B = other.B;
+	C = other.C;
+	D = other.D;
+	E = other.E;
+	F = other.F;
+	H = other.H;
+	L = other.L;
+	SP = other.SP;
+	CP = other.CP;
+	other.SP = nullptr;
+	other.CP = nullptr;
 }
 
 Cpu_registers::~Cpu_registers()
@@ -43,12 +63,40 @@ Cpu_registers::~Cpu_registers()
 
 Cpu_registers	&Cpu_registers::operator=(const Cpu_registers &other)
 {
-
+	if (this != &other)
+	{
+		A = other.A;
+		B = other.B;
+		C = other.C;
+		D = other.D;
+		E = other.E;
+		F = other.F;
+		H = other.H;
+		L = other.L;
+		SP = other.SP;
+		CP = other.CP;
+	}
+	return (*this);
 }
 
-Cpu_registers	&&Cpu_registers::operator=(const Cpu_registers &&other)
+Cpu_registers	&Cpu_registers::operator=(Cpu_registers &&other)
 {
-	
+	if (this != &other)
+	{
+		A = other.A;
+		B = other.B;
+		C = other.C;
+		D = other.D;
+		E = other.E;
+		F = other.F;
+		H = other.H;
+		L = other.L;
+		SP = other.SP;
+		CP = other.CP;
+		other.SP = nullptr;
+		other.CP = nullptr;
+	}
+	return (*this);
 }
 
 bool	Cpu_registers::isCarry() const

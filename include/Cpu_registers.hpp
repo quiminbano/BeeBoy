@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:00:31 by corellan          #+#    #+#             */
-/*   Updated: 2024/10/09 15:08:33 by corellan         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:34:45 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ private:
 public:
 	Cpu_registers();
 	Cpu_registers(const Cpu_registers &other);
-	Cpu_registers(const Cpu_registers &&other);
+	Cpu_registers(Cpu_registers &&other) noexcept;
 	~Cpu_registers();
 
 	Cpu_registers	&operator=(const Cpu_registers &other);
-	Cpu_registers	&&operator=(const Cpu_registers &&other);
+	Cpu_registers	&operator=(Cpu_registers &&other) noexcept;
 
 	bool		isCarry() const;
 	bool		isHalfCarry() const;
