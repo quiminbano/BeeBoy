@@ -10,7 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/ui.hpp"
+
 int	main(void)
 {
+	UI ui = new UI();
+
+	if (ui.init() == false)
+	{
+		return (1);
+	}
+
+	while (ui.isRunning())
+	{
+		ui.checkEvents();
+	}
+
 	return (0);
 }
