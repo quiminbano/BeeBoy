@@ -6,7 +6,7 @@
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:35:16 by corellan          #+#    #+#             */
-/*   Updated: 2024/10/09 19:38:38 by corellan         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:03:18 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ Cpu_registers	&Cpu_registers::operator=(const Cpu_registers &other)
 	return (*this);
 }
 
-Cpu_registers	&Cpu_registers::operator=(Cpu_registers &&other)
+Cpu_registers	&Cpu_registers::operator=(Cpu_registers &&other) noexcept
 {
 	if (this != &other)
 	{
@@ -239,8 +239,8 @@ void	Cpu_registers::setHL(u_int16_t value)
 
 void	Cpu_registers::setAF(u_int16_t value)
 {
-	H = static_cast<u_int8_t>((value & 0xFF00) >> 8);
-	L = static_cast<u_int8_t>((value & 0xFF));
+	A = static_cast<u_int8_t>((value & 0xFF00) >> 8);
+	F = static_cast<u_int8_t>((value & 0xFF));
 }
 
 void	Cpu_registers::setCarryFlag()

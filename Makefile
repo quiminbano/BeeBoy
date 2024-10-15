@@ -15,6 +15,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
+test_registers:
+		$(CC) $(CFLAGS) $(INCLUDES) src/testRegisters.cpp \
+		src/Cpu_registers.cpp -o test_registers
+
 obj/%.o: src/%.cpp
 		@if [ ! -d "obj" ]; then mkdir -p obj; fi
 		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
@@ -24,7 +28,7 @@ clean:
 		rm -rf obj/
 
 fclean: clean
-		rm -f $(NAME)
+		rm -f $(NAME) test_registers
 
 re: fclean all
 
