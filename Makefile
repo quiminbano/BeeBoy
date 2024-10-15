@@ -1,10 +1,12 @@
 NAME = BeeBoy
 
-SRC = $(addprefix src/, main.cpp)
+SRC = $(addprefix src/, main.cpp ui.cpp)
 
 OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
 
 INCLUDES = -Iinclude
+
+LIBS = -lSDL2
 
 CC = c++
 
@@ -13,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror -Wpedantic
 all: $(NAME)
 
 $(NAME): $(OBJ)
-		$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBS)
 
 obj/%.o: src/%.cpp
 		@if [ ! -d "obj" ]; then mkdir -p obj; fi
