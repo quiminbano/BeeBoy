@@ -6,7 +6,7 @@ OBJ = $(patsubst src/%.cpp, obj/%.o, $(SRC))
 
 INCLUDES = -Iinclude
 
-LIBS = -lSDL2
+LIBS = -lSDL2 -lSDL2_ttf
 
 CC = c++
 
