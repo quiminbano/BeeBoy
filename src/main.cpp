@@ -26,5 +26,7 @@ int	main(void)
 		ui->checkEvents();
 	}
 
+	ui->quit();
+
 	return (0);
 }
