@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cpu_registers.cpp                                  :+:      :+:    :+:   */
+/*   CpuRegisters.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cpu_registers.hpp"
+#include "CpuRegisters.hpp"
 
-Cpu_registers::Cpu_registers()
+CpuRegisters::CpuRegisters()
 {
 	A = 0;
 	B = 0;
@@ -26,7 +26,7 @@ Cpu_registers::Cpu_registers()
 	CP = nullptr;	
 }
 
-Cpu_registers::Cpu_registers(const Cpu_registers &other)
+CpuRegisters::CpuRegisters(const CpuRegisters &other)
 {
 	A = other.A;
 	B = other.B;
@@ -40,7 +40,7 @@ Cpu_registers::Cpu_registers(const Cpu_registers &other)
 	CP = other.CP;
 }
 
-Cpu_registers::Cpu_registers(Cpu_registers &&other) noexcept
+CpuRegisters::CpuRegisters(CpuRegisters &&other) noexcept
 {
 	A = other.A;
 	B = other.B;
@@ -56,12 +56,12 @@ Cpu_registers::Cpu_registers(Cpu_registers &&other) noexcept
 	other.CP = nullptr;
 }
 
-Cpu_registers::~Cpu_registers()
+CpuRegisters::~CpuRegisters()
 {
 	
 }
 
-Cpu_registers	&Cpu_registers::operator=(const Cpu_registers &other)
+CpuRegisters	&CpuRegisters::operator=(const CpuRegisters &other)
 {
 	if (this != &other)
 	{
@@ -79,7 +79,7 @@ Cpu_registers	&Cpu_registers::operator=(const Cpu_registers &other)
 	return (*this);
 }
 
-Cpu_registers	&Cpu_registers::operator=(Cpu_registers &&other) noexcept
+CpuRegisters	&CpuRegisters::operator=(CpuRegisters &&other) noexcept
 {
 	if (this != &other)
 	{
@@ -99,186 +99,186 @@ Cpu_registers	&Cpu_registers::operator=(Cpu_registers &&other) noexcept
 	return (*this);
 }
 
-bool	Cpu_registers::isCarryFlag() const
+bool	CpuRegisters::isCarryFlag() const
 {
 	return (((F >> 4) & 1) != 0);
 }
 
-bool	Cpu_registers::isHalfCarryFlag() const
+bool	CpuRegisters::isHalfCarryFlag() const
 {
 	return (((F >> 5) & 1) != 0);
 }
 
-bool	Cpu_registers::isSubtractFlag() const
+bool	CpuRegisters::isSubtractFlag() const
 {
 	return (((F >> 6) & 1) != 0);
 }
 
-bool	Cpu_registers::isZeroFlag() const
+bool	CpuRegisters::isZeroFlag() const
 {
 	return (((F >> 7) & 1) != 0);
 }
 
-u_int16_t	Cpu_registers::getBC() const
+u_int16_t	CpuRegisters::getBC() const
 {
 	return (((static_cast<u_int16_t>(B)) << 8) | (static_cast<u_int16_t>(C)));
 }
 
-u_int16_t	Cpu_registers::getDE() const
+u_int16_t	CpuRegisters::getDE() const
 {
 	return (((static_cast<u_int16_t>(D)) << 8) | (static_cast<u_int16_t>(E)));
 }
 
-u_int16_t	Cpu_registers::getHL() const
+u_int16_t	CpuRegisters::getHL() const
 {
 	return (((static_cast<u_int16_t>(H)) << 8) | (static_cast<u_int16_t>(L)));
 }
 
-u_int16_t	Cpu_registers::getAF() const
+u_int16_t	CpuRegisters::getAF() const
 {
 	return (((static_cast<u_int16_t>(A)) << 8) | (static_cast<u_int16_t>(F)));
 }
 
-u_int8_t	Cpu_registers::getA() const
+u_int8_t	CpuRegisters::getA() const
 {
 	return (A);
 }
 
-u_int8_t	Cpu_registers::getB() const
+u_int8_t	CpuRegisters::getB() const
 {
 	return (B);
 }
 
-u_int8_t	Cpu_registers::getC() const
+u_int8_t	CpuRegisters::getC() const
 {
 	return (C);
 }
 
-u_int8_t	Cpu_registers::getD() const
+u_int8_t	CpuRegisters::getD() const
 {
 	return (D);
 }
 
-u_int8_t	Cpu_registers::getE() const
+u_int8_t	CpuRegisters::getE() const
 {
 	return (E);
 }
 
-u_int8_t	Cpu_registers::getF() const
+u_int8_t	CpuRegisters::getF() const
 {
 	return (F);
 }
 
-u_int8_t	Cpu_registers::getH() const
+u_int8_t	CpuRegisters::getH() const
 {
 	return (H);
 }
 
-u_int8_t	Cpu_registers::getL() const
+u_int8_t	CpuRegisters::getL() const
 {
 	return (L);
 }
 
-void	Cpu_registers::setA(u_int8_t value)
+void	CpuRegisters::setA(u_int8_t value)
 {
 	A = value;
 }
 
-void	Cpu_registers::setB(u_int8_t value)
+void	CpuRegisters::setB(u_int8_t value)
 {
 	B = value;
 }
 
-void	Cpu_registers::setC(u_int8_t value)
+void	CpuRegisters::setC(u_int8_t value)
 {
 	C = value;
 }
 
-void	Cpu_registers::setD(u_int8_t value)
+void	CpuRegisters::setD(u_int8_t value)
 {
 	D = value;
 }
 
-void	Cpu_registers::setE(u_int8_t value)
+void	CpuRegisters::setE(u_int8_t value)
 {
 	E = value;
 }
 
-void	Cpu_registers::setF(u_int8_t value)
+void	CpuRegisters::setF(u_int8_t value)
 {
 	F = value;
 }
 
-void	Cpu_registers::setH(u_int8_t value)
+void	CpuRegisters::setH(u_int8_t value)
 {
 	H = value;
 }
 
-void	Cpu_registers::setL(u_int8_t value)
+void	CpuRegisters::setL(u_int8_t value)
 {
 	L = value;
 }
 
-void	Cpu_registers::setBC(u_int16_t value)
+void	CpuRegisters::setBC(u_int16_t value)
 {
 	B = static_cast<u_int8_t>((value & 0xFF00) >> 8);
 	C = static_cast<u_int8_t>((value & 0xFF));
 }
 
-void	Cpu_registers::setDE(u_int16_t value)
+void	CpuRegisters::setDE(u_int16_t value)
 {
 	D = static_cast<u_int8_t>((value & 0xFF00) >> 8);
 	E = static_cast<u_int8_t>((value & 0xFF));
 }
 
-void	Cpu_registers::setHL(u_int16_t value)
+void	CpuRegisters::setHL(u_int16_t value)
 {
 	H = static_cast<u_int8_t>((value & 0xFF00) >> 8);
 	L = static_cast<u_int8_t>((value & 0xFF));
 }
 
-void	Cpu_registers::setAF(u_int16_t value)
+void	CpuRegisters::setAF(u_int16_t value)
 {
 	A = static_cast<u_int8_t>((value & 0xFF00) >> 8);
 	F = static_cast<u_int8_t>((value & 0xFF));
 }
 
-void	Cpu_registers::setCarryFlag()
+void	CpuRegisters::setCarryFlag()
 {
 	F = (F | 0b00010000);
 }
 
-void	Cpu_registers::setHalfCarryFlag()
+void	CpuRegisters::setHalfCarryFlag()
 {
 	F = (F | 0b00100000);
 }
 
-void	Cpu_registers::setSubtractFlag()
+void	CpuRegisters::setSubtractFlag()
 {
 	F = (F | 0b01000000);
 }
 
-void	Cpu_registers::setZeroFlag()
+void	CpuRegisters::setZeroFlag()
 {
 	F = (F | 0b10000000);
 }
 
-void	Cpu_registers::unsetCarryFlag()
+void	CpuRegisters::unsetCarryFlag()
 {
 	F = ~((~F | 0b00010000));
 }
 
-void	Cpu_registers::unsetHalfCarryFlag()
+void	CpuRegisters::unsetHalfCarryFlag()
 {
 	F = ~((~F | 0b00100000));
 }
 
-void	Cpu_registers::unsetSubtractFlag()
+void	CpuRegisters::unsetSubtractFlag()
 {
 	F = ~((~F | 0b01000000));
 }
 
-void	Cpu_registers::unsetZeroFlag()
+void	CpuRegisters::unsetZeroFlag()
 {
 	F = ~((~F | 0b10000000));
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cpu_registers.hpp                                  :+:      :+:    :+:   */
+/*   CpuRegisters.hpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: corellan <corellan@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 14:00:31 by corellan          #+#    #+#             */
-/*   Updated: 2024/10/09 19:37:29 by corellan         ###   ########.fr       */
+/*   Updated: 2024/11/13 15:47:38 by corellan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <cstdlib>
 
-class Cpu_registers
+class CpuRegisters
 {
-private:
+protected:
 	u_int8_t	A;
 	u_int8_t	B;
 	u_int8_t	C;
@@ -28,14 +28,6 @@ private:
 	u_int8_t	L;
 	u_int8_t	*SP;
 	u_int8_t	*CP;
-public:
-	Cpu_registers();
-	Cpu_registers(const Cpu_registers &other);
-	Cpu_registers(Cpu_registers &&other) noexcept;
-	~Cpu_registers();
-
-	Cpu_registers	&operator=(const Cpu_registers &other);
-	Cpu_registers	&operator=(Cpu_registers &&other) noexcept;
 
 	bool		isCarryFlag() const;
 	bool		isHalfCarryFlag() const;
@@ -73,6 +65,16 @@ public:
 	void		unsetHalfCarryFlag();
 	void		unsetSubtractFlag();
 	void		unsetZeroFlag();
+
+public:
+	CpuRegisters();
+	CpuRegisters(const CpuRegisters &other);
+	CpuRegisters(CpuRegisters &&other) noexcept;
+	~CpuRegisters();
+
+	CpuRegisters	&operator=(const CpuRegisters &other);
+	CpuRegisters	&operator=(CpuRegisters &&other) noexcept;
+
 };
 
 #endif
