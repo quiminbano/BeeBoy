@@ -26,10 +26,11 @@ public:
 	Cpu		&operator=(const Cpu &other);
 	Cpu		&operator=(Cpu &&other) noexcept;
 
-	void	add(u_int16_t value);
+	void	ld(u_int8_t &reg, u_int8_t value);
+	void	add(u_int8_t value);
 	void	addHL(u_int16_t value);
 	void	adc(u_int8_t value);
-	void	sub();
+	void	sub(u_int8_t value);
 	void	sbc(u_int8_t value);
 	void	andbw(u_int8_t value);
 	void	orbw(u_int8_t value);

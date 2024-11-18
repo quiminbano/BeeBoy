@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cpu_registers.hpp"
+#include "CpuRegisters.hpp"
 #include <iostream>
 #include <vector>
 #include <unistd.h>
@@ -22,13 +22,13 @@ static void	assert_eq(T expected, T actual)
 	if (expected != actual)
 		std::cout << "\x1b[0;31m" << "KO" << "\x1b[0m"  << std::endl;
 	else
-		std::cout << "\x1b[0;32m" << "OK" << "\x1b[0m" << std::endl;	
+		std::cout << "\x1b[0;32m" << "OK" << "\x1b[0m" << std::endl;
 	usleep(500);
 }
 
 int main(void)
 {
-	Cpu_registers	test_registers;
+	CpuRegisters	test_registers;
 	std::vector<u_int16_t>	test_values_16_bits = {0x1234, 0x5678, 0x9ABC, 0xDEF0, 0xFF00, 0x00FF, 0x0000, 0xFFFF};
 	std::vector<std::pair<u_int8_t, u_int8_t>>	pairs_8_bits = {{0x12, 0x34}, {0x56, 0x78}, {0x9A, 0xBC}, {0xDE, 0xF0}, {0xFF, 0x00}, {0x00, 0xFF}, {0x00, 0x00}, {0xFF, 0xFF}};
 	size_t	index = 0;
