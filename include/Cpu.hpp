@@ -45,9 +45,9 @@ public:
 	void	rrca();
 	void	rrla();
 	void	cpl();
-	void	bit();
-	void	reset(u_int8_t &reg, unsigned char bit);
-	void	set(u_int8_t &reg, unsigned char bit);
+	void	bit(u_int8_t &reg, u_int8_t bit);
+	void	reset(u_int8_t &reg, u_int8_t bit);
+	void	set(u_int8_t &reg, u_int8_t bit);
 	void	srl(u_int8_t &reg);
 	void	rr(u_int8_t &reg);
 	void	rl(u_int8_t &reg);

@@ -1,6 +1,4 @@
 #include "Cpu.hpp"
-#include <sys/_types/_u_int16_t.h>
-#include <sys/_types/_u_int8_t.h>
 #include <utility>
 
 Cpu::Cpu() : CpuRegisters()
@@ -164,4 +162,99 @@ void	Cpu::cp(u_int8_t value)
 	if (result == 0)
 		setZeroFlag();
 	setSubtractFlag();
+}
+
+void	Cpu::inc(u_int8_t &reg)
+{
+    u_int8_t	result;
+
+    result = reg + 1;
+    setF(0);
+    if (result == 0)
+    	setZeroFlag();
+    if ((((reg & 0xF) + (1 & 0xF)) & 0x10) == 0x10)
+     	setHalfCarryFlag();
+    reg = result;
+}
+
+void	Cpu::dec(u_int8_t &reg)
+{
+	u_int8_t	result;
+
+	result = reg - 1;
+	setF(0);
+	if (result == 0)
+		setZeroFlag();
+	if ((((reg & 0xF) - (1 & 0xF)) & 0x10) == 0x10)
+		setHalfCarryFlag();
+	setSubtractFlag();
+}
+
+//I wonder if I should write these wrappers for ccf and scf or not
+void	Cpu::ccf()
+{
+	setCarryFlag();
+}
+
+//Same story here
+void	Cpu::scf()
+{
+	unsetCarryFlag();
+}
+
+void	Cpu::rra()
+{
+	u_int8_t	carryBit;
+	u_int8_t	leastSignificantBitA;
+
+	carryBit = static_cast<u_int8_t>(isCarryFlag());
+	leastSignificantBitA = A & 1;
+	unsetCarryFlag();
+	if (leastSignificantBitA)
+		setCarryFlag();
+	A = ((A >> 1) | (carryBit << 7));
+}
+
+void	Cpu::rla()
+{
+	u_int8_t	carryBit;
+	u_int8_t	mostSignificantBitA;
+
+	carryBit = static_cast<u_int8_t>(isCarryFlag());
+	mostSignificantBitA = static_cast<u_int8_t>((((A >> 7) & 1) == 1));
+	unsetCarryFlag();
+	if (mostSignificantBitA)
+		setCarryFlag();
+	A = ((A << 1) | carryBit);
+}
+
+void	Cpu::rrca()
+{
+	u_int8_t	leastSignificantBitA;
+
+	leastSignificantBitA = A & 1;
+	A = ((A >> 1) | (leastSignificantBitA << 7));
+}
+
+void	Cpu::rrla()
+{
+	u_int8_t	mostSignificantBitA;
+
+	mostSignificantBitA = static_cast<u_int8_t>((((A >> 7) & 1) == 1));
+	A = ((A << 1) | mostSignificantBitA);
+}
+
+void	Cpu::cpl()
+{
+	A = ~A;
+	setHalfCarryFlag();
+	setSubtractFlag();
+}
+
+void	Cpu::bit(u_int8_t &reg, u_int8_t bit)
+{
+	if (((reg >> bit) & 1) == 0)
+		setZeroFlag();
+	setHalfCarryFlag();
+	unsetSubtractFlag();
 }
