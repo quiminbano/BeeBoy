@@ -204,44 +204,22 @@ void	Cpu::scf()
 
 void	Cpu::rra()
 {
-	u_int8_t	carryBit;
-	u_int8_t	leastSignificantBitA;
-
-	carryBit = static_cast<u_int8_t>(isCarryFlag());
-	leastSignificantBitA = A & 1;
-	unsetCarryFlag();
-	if (leastSignificantBitA)
-		setCarryFlag();
-	A = ((A >> 1) | (carryBit << 7));
+	rr(A);
 }
 
 void	Cpu::rla()
 {
-	u_int8_t	carryBit;
-	u_int8_t	mostSignificantBitA;
-
-	carryBit = static_cast<u_int8_t>(isCarryFlag());
-	mostSignificantBitA = static_cast<u_int8_t>((((A >> 7) & 1) == 1));
-	unsetCarryFlag();
-	if (mostSignificantBitA)
-		setCarryFlag();
-	A = ((A << 1) | carryBit);
+	rl(A);
 }
 
 void	Cpu::rrca()
 {
-	u_int8_t	leastSignificantBitA;
-
-	leastSignificantBitA = A & 1;
-	A = ((A >> 1) | (leastSignificantBitA << 7));
+	rrc(A);
 }
 
 void	Cpu::rrla()
 {
-	u_int8_t	mostSignificantBitA;
-
-	mostSignificantBitA = static_cast<u_int8_t>((((A >> 7) & 1) == 1));
-	A = ((A << 1) | mostSignificantBitA);
+	rlc(A);
 }
 
 void	Cpu::cpl()
@@ -257,4 +235,102 @@ void	Cpu::bit(u_int8_t &reg, u_int8_t bit)
 		setZeroFlag();
 	setHalfCarryFlag();
 	unsetSubtractFlag();
+}
+
+void	Cpu::reset(u_int8_t &reg, u_int8_t bit)
+{
+	reg = reg & ~(1 << bit);
+}
+
+void	Cpu::set(u_int8_t &reg, u_int8_t bit)
+{
+	reg = reg | (1 << bit);
+}
+
+void	Cpu::srl(u_int8_t &reg)
+{
+	u_int8_t	leastSignificantBit;
+
+	leastSignificantBit = reg & 1;
+	setF(0);
+	if (leastSignificantBit)
+		setCarryFlag();
+	reg = (reg >> 1);
+	if (!reg)
+		setZeroFlag();
+}
+
+void	Cpu::rr(u_int8_t &reg)
+{
+	u_int8_t	carryBit;
+	u_int8_t	leastSignificantBit;
+
+	carryBit = static_cast<u_int8_t>(isCarryFlag());
+	leastSignificantBit = reg & 1;
+	setF(0);
+	if (leastSignificantBit)
+		setCarryFlag();
+	reg = ((reg >> 1) | (carryBit << 7));
+}
+
+void	Cpu::rl(u_int8_t &reg)
+{
+	u_int8_t	carryBit;
+	u_int8_t	mostSignificantBit;
+
+	carryBit = static_cast<u_int8_t>(isCarryFlag());
+	mostSignificantBit = static_cast<u_int8_t>((((reg >> 7) & 1) == 1));
+	setF(0);
+	if (mostSignificantBit)
+		setCarryFlag();
+	reg = ((reg << 1) | carryBit);
+}
+
+void	Cpu::rrc(u_int8_t &reg)
+{
+	u_int8_t	leastSignificantBit;
+
+	leastSignificantBit = (reg & 1);
+	reg = ((reg >> 1) | (leastSignificantBit << 7));
+}
+
+void	Cpu::rlc(u_int8_t &reg)
+{
+	u_int8_t	mostSignificantBit;
+
+	mostSignificantBit = static_cast<u_int8_t>((((reg >> 7) & 1) == 1));
+	reg = ((reg << 1) | mostSignificantBit);
+}
+
+void	Cpu::sra(u_int8_t &reg)
+{
+	u_int8_t	mostSignificantBit;
+	u_int8_t	leastSignificantBit;
+
+	mostSignificantBit = ((reg >> 7) & 1);
+	leastSignificantBit = (reg & 1);
+	setF(0);
+	reg = (reg >> 1) | (mostSignificantBit << 7);
+	if (leastSignificantBit)
+		setCarryFlag();
+	if (reg == 0)
+		setZeroFlag();
+}
+
+void	Cpu::sla(u_int8_t &reg)
+{
+	u_int8_t	mostSignificantBit;
+
+	mostSignificantBit = ((reg >> 7) & 1);
+	reg = (reg << 1);
+	setF(0);
+	if (reg == 0)
+		setZeroFlag();
+	if (mostSignificantBit)
+		setCarryFlag();
+}
+
+void	Cpu::swap(u_int8_t &reg)
+{
+	reg = (reg << 4 | reg >> 4);
 }
