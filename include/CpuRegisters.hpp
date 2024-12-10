@@ -27,7 +27,7 @@ protected:
 	u_int8_t	H;
 	u_int8_t	L;
 	u_int16_t	SP;
-	u_int16_t	CP;
+	u_int16_t	CP; //Program counter
 
 	bool		isCarryFlag() const;
 	bool		isHalfCarryFlag() const;
