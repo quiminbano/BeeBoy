@@ -22,8 +22,6 @@ CpuRegisters::CpuRegisters()
 	F = 0;
 	H = 0;
 	L = 0;
-	SP = nullptr;
-	CP = nullptr;	
 }
 
 CpuRegisters::CpuRegisters(const CpuRegisters &other)
@@ -36,8 +34,6 @@ CpuRegisters::CpuRegisters(const CpuRegisters &other)
 	F = other.F;
 	H = other.H;
 	L = other.L;
-	SP = other.SP;
-	CP = other.CP;
 }
 
 CpuRegisters::CpuRegisters(CpuRegisters &&other) noexcept
@@ -50,15 +46,11 @@ CpuRegisters::CpuRegisters(CpuRegisters &&other) noexcept
 	F = other.F;
 	H = other.H;
 	L = other.L;
-	SP = other.SP;
-	CP = other.CP;
-	other.SP = nullptr;
-	other.CP = nullptr;
 }
 
 CpuRegisters::~CpuRegisters()
 {
-	
+
 }
 
 CpuRegisters	&CpuRegisters::operator=(const CpuRegisters &other)
@@ -73,8 +65,6 @@ CpuRegisters	&CpuRegisters::operator=(const CpuRegisters &other)
 		F = other.F;
 		H = other.H;
 		L = other.L;
-		SP = other.SP;
-		CP = other.CP;
 	}
 	return (*this);
 }
@@ -91,10 +81,6 @@ CpuRegisters	&CpuRegisters::operator=(CpuRegisters &&other) noexcept
 		F = other.F;
 		H = other.H;
 		L = other.L;
-		SP = other.SP;
-		CP = other.CP;
-		other.SP = nullptr;
-		other.CP = nullptr;
 	}
 	return (*this);
 }

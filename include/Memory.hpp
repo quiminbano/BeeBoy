@@ -19,7 +19,7 @@
 class Memory
 {
 private:
-	std::array<u_int8_t, 0xFFFF>	m_memory_block;
+	std::array<u_int8_t, (0xFFFF + 1)>	m_memory_block;
 public:
 	Memory();
 	Memory(const Memory &other);
